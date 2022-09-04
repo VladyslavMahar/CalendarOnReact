@@ -47,11 +47,18 @@ const nextMonth = () => {
 
 //функція обробки Івентів
 const saveEvent = (task, i) => {
-  let id = i || moment().format('x')
+  let id = i || moment().format('X')
   let temp = events.filter(event => event.id !== id)
   setEvents([...temp,{id, ...task}])
   localStorage.setItem('events', JSON.stringify([...temp,{id, ...task}]));
   closeForm()
+}
+
+const deleteEvent = (id) => {
+let temp = events.filter(event => event.id !== id)
+setEvents([...temp])
+localStorage.setItem('events', JSON.stringify([...temp]));
+closeForm()
 }
 // Фільтер дати
 const filterMonth = (unixDate) => setToday(moment(unixDate))
@@ -59,7 +66,7 @@ const filterMonth = (unixDate) => setToday(moment(unixDate))
   return (
     <div className="App">
       {isFormOpen ?
-       <FormEvent saveEvent={saveEvent} 
+       <FormEvent deleteEvent={deleteEvent} saveEvent={saveEvent} 
       closeForm={closeForm} updateEvent={updateEvent} 
       setUpdateEvent={setUpdateEvent} nameOfMethod={nameOfMethod}/> 
       : null}

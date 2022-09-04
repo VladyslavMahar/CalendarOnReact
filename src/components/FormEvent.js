@@ -3,7 +3,7 @@ import { AiOutlineCloseCircle, AiFillDelete } from "react-icons/ai";
 import moment from 'moment';
 
 
-const FormEvent = ({setUpdateEvent, saveEvent, updateEvent, closeForm, nameOfMethod}) => {
+const FormEvent = ({deleteEvent, setUpdateEvent, saveEvent, updateEvent, closeForm, nameOfMethod}) => {
 
 
 const addEvent = () => {
@@ -12,7 +12,7 @@ const addEvent = () => {
     else 
     saveEvent({"title":updateEvent.title, "description":updateEvent.description, "date":updateEvent.date},updateEvent.id )
 }
-const dropEvent = () => saveEvent({},updateEvent.id)
+const dropEvent = () => deleteEvent(updateEvent.id)
 const onChangeMethod = (value, input) => {
     setUpdateEvent(prevState => ({...prevState, 
     [input]:value}))
