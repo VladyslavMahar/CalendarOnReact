@@ -6,6 +6,7 @@ import FormEvent from './components/FormEvent';
 import Header from './components/Header';
 
 function App() {
+  
   // Зміна першого дня тижня на понеділок
 moment.updateLocale('en', {week: {dow:1}})
 
@@ -13,6 +14,7 @@ const [today, setToday] = useState(moment())
 const [isFormOpen, setIsFormOpen] = useState(false)
 const [updateEvent, setUpdateEvent] = useState(null)
 const [nameOfMethod, setNameOfMethod] = useState()
+
 // Вибір першого дня на сторінці місяця
 const firstDay = today.clone().startOf('month').startOf('week')
 
@@ -21,7 +23,7 @@ const [events, setEvents] =useState(JSON.parse(localStorage.getItem('events'))||
 
 // Завантаження даних через апі в state events
 // useEffect( () => {
-//   fetch('http://example/api').then(response => response.json()).then(setEvents(response))
+//   fetch('http://example/api').then(response => response.json()).then(response => setEvents(response))
 // }, [])
 
 const openForm = (method, updateEvent) => {
@@ -33,8 +35,9 @@ const openForm = (method, updateEvent) => {
   })
   setIsFormOpen(true) 
 }
+
 const closeForm = () =>{
-  setIsFormOpen(!isFormOpen)
+  setIsFormOpen(false)
   setUpdateEvent(null)
 }
 
@@ -54,12 +57,14 @@ const saveEvent = (task, i) => {
   closeForm()
 }
 
+// Вмдалення Івентів
 const deleteEvent = (id) => {
 let temp = events.filter(event => event.id !== id)
 setEvents([...temp])
 localStorage.setItem('events', JSON.stringify([...temp]));
 closeForm()
 }
+
 // Фільтер дати
 const filterMonth = (unixDate) => setToday(moment(unixDate))
 
@@ -67,12 +72,11 @@ const filterMonth = (unixDate) => setToday(moment(unixDate))
     <div className="App">
       {isFormOpen ?
        <FormEvent deleteEvent={deleteEvent} saveEvent={saveEvent} 
-      closeForm={closeForm} updateEvent={updateEvent} 
-      setUpdateEvent={setUpdateEvent} nameOfMethod={nameOfMethod}/> 
+          closeForm={closeForm} updateEvent={updateEvent} 
+          setUpdateEvent={setUpdateEvent} nameOfMethod={nameOfMethod}/> 
       : null}
       <Header filterMonth={filterMonth} today = {today} firstDay = {firstDay} openForm={openForm} previosMonth={previosMonth} nextMonth={nextMonth} />
       <Calendar openForm={openForm} events={events} today = {today} firstDay = {firstDay}/>
-      
     </div>
   );
 }

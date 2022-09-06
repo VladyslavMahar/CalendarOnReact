@@ -9,10 +9,14 @@ const FormEvent = ({deleteEvent, setUpdateEvent, saveEvent, updateEvent, closeFo
 const addEvent = () => {
     if (updateEvent.title === '')
     alert('Title must be filled')
-    else 
+    else if (!updateEvent.date)
+    alert('Date must be filled')
+    else
     saveEvent({"title":updateEvent.title, "description":updateEvent.description, "date":updateEvent.date},updateEvent.id )
 }
+
 const dropEvent = () => deleteEvent(updateEvent.id)
+
 const onChangeMethod = (value, input) => {
     setUpdateEvent(prevState => ({...prevState, 
     [input]:value}))
@@ -21,9 +25,9 @@ const onChangeMethod = (value, input) => {
   return (
     <div onClick={closeForm} className='formEventBlock'>
         
-        <form onClick={e =>e.stopPropagation()}
+        <form onClick={e => e.stopPropagation()}
          className='formEvent'>
-            <span>{nameOfMethod} event</span>
+            <span className='titleForm'>{nameOfMethod} event</span>
 
             <AiOutlineCloseCircle  onClick={closeForm} className='closeIcon'/>
 

@@ -11,7 +11,7 @@ const Calendar = ( {firstDay, today, events, openForm} ) => {
   return (
     <div className='calendar'>
       {arrCalendar.map((Item) => (
-        <CalendarItem openForm={openForm} key = {Item.format('DD-MM-YYYY')} 
+        <CalendarItem openForm={openForm} key={Item.format('DD-MM-YYYY')} 
         Item = {Item} today={today} events={events} />
       ))}
     </div>
