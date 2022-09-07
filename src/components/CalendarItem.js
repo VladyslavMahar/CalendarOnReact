@@ -9,7 +9,9 @@ const CalendarItem = ({Item, today, events, openForm}) => {
             'todayItem':
             Item.format('MM-YYYY') !== today.format('MM-YYYY') ? 
             'anyMonthItem':
-            'calendarItem' }>
+            Item.format('DD-MM-YYYY') === today.format('DD-MM-YYYY') ?
+            'selectedDay':
+            'calendarItem'}>
         <div>{Item.format('D')}</div>
         <div>{Item.format('ddd')}</div>
         <div className='ItemTask'>

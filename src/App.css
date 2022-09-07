@@ -1,4 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap');
+
+:root {
+  --color-elements:rgb(154, 64, 239);
+  --color-bgApp:rgb(228, 220, 245);
+  --color-shadow:rgb(62, 35, 62);
+  --color-headerText:#000;
+  --color-formEventBlock:rgba(35, 34, 35, 0.9);
+  --color-bgFormEvent:rgba(69, 68, 68, 0.712);
+  --color-bgFormElements:rgb(214, 176, 234);
+  --color-textBtnSave:#fafafa;
+  --color-text:#fafafa;
+  --color-calendarItem:rgb(196, 175, 240);
+  --color-calendarItemText:#000;
+  --color-today:linear-gradient(rgba(185, 68, 158, 0.955),rgba(249, 181, 239, 0.955));
+  --color-anyMonth:rgba(112, 88, 121, 0.586);
+  --color-textAnyMonth:#646262;
+  --color-event:rgb(154, 64, 239);
+  --color-eventText:#fafafa;
+}
+.dark {
+  --color-elements:rgb(238, 238, 238);
+  --color-bgApp:rgb(57, 62, 70);
+  --color-shadow:rgb(57, 62, 70);
+  --color-headerText:rgb(238, 238, 238);
+  --color-formEventBlock:rgba(238, 238, 238, 0.486);
+  --color-bgFormEvent:rgb(57, 62, 70);
+  --color-bgFormElements:rgba(138, 138, 138, 0.586);
+  --color-textBtnSave:#000;
+  --color-today:linear-gradient(rgb(214, 90, 49),rgb(162, 124, 111));
+  --color-text:#fafafa;
+  --color-calendarItemText:rgb(239, 239, 239);
+  --color-calendarItem:rgb(34, 40, 49);
+  --color-anyMonth:rgba(138, 138, 138, 0.586);
+  --color-textAnyMonth:#e5dfdf;
+  --color-event:rgb(16, 76, 35);
+  --color-eventText:#fafafa;
+}
+.light {
+  --color-elements:rgb(84, 186, 185);
+  --color-bgApp:rgb(251, 248, 241);
+  --color-shadow:rgb(57, 62, 70);
+  --color-headerText:rgb(36, 36, 36);
+  --color-formEventBlock:rgba(75, 72, 72, 0.818);
+  --color-bgFormEvent:rgb(247, 236, 222);
+  --color-bgFormElements:rgba(138, 138, 138, 0.586);
+  --color-textBtnSave:#000;
+  --color-today:linear-gradient(rgb(84, 186, 185),rgb(84, 186, 116));
+  --color-text:rgb(36, 36, 36);
+  --color-calendarItemText:#000;
+  --color-calendarItem:rgb(233, 218, 193);
+  --color-anyMonth:rgba(138, 138, 138, 0.586);
+  --color-textAnyMonth:#646262;
+  --color-event:rgb(84, 186, 185);
+  --color-eventText:#000;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,35 +64,43 @@
 ::-webkit-scrollbar {
   width: 5px;
 }
-::-webkit-scrollbar-track {
-  background: #dddddd;
-}
+
 ::-webkit-scrollbar-thumb {
-  background: rgb(154, 64, 239);;}
+  background: var(--color-elements);}
+
 #root {
   height: 100vh;
   display: grid;
   justify-items: center;
   align-items: center;
   position: relative;
+  background-color: rgb(109, 105, 105);
 }
+
 .App {
-  border:rgb(112, 88, 121);
   border-radius: 8px;
-  background-color: rgb(228, 220, 245);
-  box-shadow: -1px 10px 26px -6px rgb(62, 35, 62);
+  background-color: var(--color-bgApp);
+  box-shadow: -1px 10px 26px -6px var(--color-shadow);
 }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 5vh;
   padding: 8px;
+  color:var(--color-headerText);
+}
+.header input {
+  color:var(--color-headerText);
+}
+.header input::-webkit-datetime-edit{
+  display: none;
 }
 
 .addIcon {
   transform: scale(2);
-  color:rgb(154, 64, 239);
+  color:var(--color-elements);
   margin-left: 5px;
   transition: all ease .8s;
 }
@@ -57,7 +121,7 @@
 .nav input {
   border: none;
   outline: none;
-  background-color: rgb(228, 220, 245);
+  background-color: var(--color-bgApp);
 }
 
 .formEventBlock {
@@ -69,7 +133,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background:rgba(35, 34, 35, 0.9);
+  background:var(--color-formEventBlock);
 }
 .formEvent {
   position: absolute;
@@ -82,12 +146,12 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(4, 1fr);
   grid-gap: 10px;
-  background:rgba(69, 68, 68, 0.712);  
+  background:var(--color-bgFormEvent);  
   animation: openForm .5s;
 }
 
 .titleForm {
-  color:#fafafa;
+  color:var(--color-text);
   font-size: 25px;
   font-weight: 500;
   font-style: italic;
@@ -95,12 +159,12 @@
 .closeIcon {
   cursor: pointer;
   justify-self: end;
-  color:rgb(214, 176, 234);
+  color:var(--color-bgFormElements);
   transition: all ease .5s;
 }
 
-.title, .description, .dateEvent,  .btnSave {
-  background:rgb(214, 176, 234);
+.title, .description, .dateEvent {
+  background:var(--color-bgFormElements);
   border-radius: 5px;
   padding: 5px;
   border: none;
@@ -114,15 +178,19 @@
   grid-column: 1/3;
   resize: none;
 }
-
+.title::placeholder, .description::placeholder {
+color:var(--color-text)
+}
 .btnSave {
   grid-column: 2/3;
   justify-self:  end;
   align-self: center;
   min-width: 5vw;
   border-radius: 5px 10px;
-  background:rgb(112, 88, 121);
-  color: #fff;
+  border: none;
+  padding: 5px;
+  background:var(--color-elements);
+  color: var(--color-);
   transition: all ease .5s;
 }
 
@@ -135,42 +203,41 @@
 .btnSave:hover, .btnDelete:hover, .closeIcon:hover {
   transform: scale(1.1);
   cursor: pointer;
-  box-shadow: -1px 3px 26px -6px rgb(168, 144, 168);
 }
 
 .calendar {
   display: grid;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(7, 1fr);
-  background-color: rgb(228, 220, 245);
   grid-gap: 3px;
   border-radius: 15px;
   padding: 5px;
 }
 
-.calendarItem, .todayItem, .anyMonthItem {
+.calendarItem, .todayItem, .anyMonthItem, .selectedDay {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 1fr 2fr;
   width: 100px;
   height: 60px;
-  background-color: rgb(196, 175, 240);
+  background-color: var(--color-calendarItem);
+  color:var(--color-calendarItemText);
   padding: 10px;
   border-radius: 5px;
   font-size: 10px;
   overflow:auto;
   transition: all .5s;
 }
-
+.selectedDay {
+  box-shadow: inset 0px 0px 1px 1.5px var(--color-elements);;
+}
 .todayItem {
-  background-image:linear-gradient(rgba(185, 68, 158, 0.955),rgba(249, 181, 239, 0.955));
+  background-image:var(--color-today);
 }
-
 .anyMonthItem {
-  background-color: rgba(112, 88, 121, 0.586);
-  color:#646262;
+  background-color: var(--color-anyMonth);
+  color:var(--color-textAnyMonth);
 }
-
 .calendarItem:hover {
   transform: scale(1.02);
 }
@@ -180,8 +247,8 @@ grid-column: 1/4;
 }
 
 .event {
-  background-color: rgb(154, 64, 239);
-  color: #fafafa;
+  background-color: var(--color-event);
+  color: var(--color-eventText);
   border-radius: 8px;
   padding: 1px 3px;
   margin-bottom: 2px;
@@ -193,6 +260,25 @@ grid-column: 1/4;
   font-size: 9px;
   font-weight: 300;
   font-style: italic;
+}
+
+.theme {
+  display: flex;
+  justify-content: space-between;
+  min-width: 20vw;
+}
+.theme input {
+ display: none;
+}
+.theme label {
+  padding: 2px 5px;
+  border-radius: 25px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.theme input:checked + label {
+  background: var(--color-elements);
+  color:rgb(37, 37, 37);
 }
 
 @keyframes openForm {

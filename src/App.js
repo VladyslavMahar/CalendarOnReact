@@ -5,6 +5,7 @@ import Calendar from './components/Calendar';
 import FormEvent from './components/FormEvent';
 import Header from './components/Header';
 
+
 function App() {
   
   // Зміна першого дня тижня на понеділок
@@ -14,6 +15,7 @@ const [today, setToday] = useState(moment())
 const [isFormOpen, setIsFormOpen] = useState(false)
 const [updateEvent, setUpdateEvent] = useState(null)
 const [nameOfMethod, setNameOfMethod] = useState()
+const [theme, setTheme] =useState('App')
 
 // Вибір першого дня на сторінці місяця
 const firstDay = today.clone().startOf('month').startOf('week')
@@ -68,14 +70,16 @@ closeForm()
 // Фільтер дати
 const filterMonth = (unixDate) => setToday(moment(unixDate))
 
+// Вибір теми
+const selectTheme = (themeName) => setTheme(themeName)
   return (
-    <div className="App">
+    <div className={theme} >
       {isFormOpen ?
        <FormEvent deleteEvent={deleteEvent} saveEvent={saveEvent} 
           closeForm={closeForm} updateEvent={updateEvent} 
           setUpdateEvent={setUpdateEvent} nameOfMethod={nameOfMethod}/> 
       : null}
-      <Header filterMonth={filterMonth} today = {today} firstDay = {firstDay} openForm={openForm} previosMonth={previosMonth} nextMonth={nextMonth} />
+      <Header selectTheme={selectTheme} filterMonth={filterMonth} today = {today} firstDay = {firstDay} openForm={openForm} previosMonth={previosMonth} nextMonth={nextMonth} />
       <Calendar openForm={openForm} events={events} today = {today} firstDay = {firstDay}/>
     </div>
   );

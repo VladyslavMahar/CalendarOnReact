@@ -1,8 +1,9 @@
 import React from 'react'
 import { AiFillPlusCircle, AiOutlineArrowLeft,AiOutlineArrowRight } from "react-icons/ai";
+import Theme from './Theme';
 
 
-const Header = ( {openForm, previosMonth, nextMonth, today, filterMonth} ) => {
+const Header = ( {openForm, previosMonth, nextMonth, today, filterMonth, selectTheme} ) => {
     
 const filterData = (date) => {
     filterMonth(date)
@@ -11,6 +12,7 @@ const filterData = (date) => {
   return (
     <div className='header'>
         <AiFillPlusCircle onClick={() => openForm('Create')} className='addIcon'/>
+        <Theme selectTheme={selectTheme}/>
         <div className='nav'>
             <AiOutlineArrowLeft className='arrow' onClick={previosMonth}/>
             <div className='thisMonth'>{today.format('MMMM-y')}</div>
