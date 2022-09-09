@@ -1,0 +1,5 @@
+.App {
+  border-radius: 8px;
+  background-color: var(--color-bgApp);
+  box-shadow: -1px 10px 26px -6px var(--color-shadow);
+}

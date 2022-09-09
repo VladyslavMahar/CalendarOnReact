@@ -1,0 +1,18 @@
+.theme {
+  display: flex;
+  justify-content: space-between;
+  min-width: 20vw;
+}
+.theme input {
+  display: none;
+}
+.theme label {
+  padding: 2px 5px;
+  border-radius: 25px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.theme input:checked + label {
+  background: var(--color-elements);
+  color: rgb(37, 37, 37);
+}

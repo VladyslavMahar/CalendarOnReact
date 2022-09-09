@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 5vh;
+  padding: 8px;
+  color: var(--color-headerText);
+}
+
+.header input {
+  color: var(--color-headerText);
+}
+
+.header input::-webkit-datetime-edit {
+  display: none;
+}
+
+.addIcon {
+  transform: scale(2);
+  color: var(--color-elements);
+  margin-left: 5px;
+  transition: all ease 0.8s;
+}
+
+.addIcon:hover {
+  cursor: pointer;
+  transform: scale(2.2) rotateZ(180deg);
+}
+
+.nav {
+  display: flex;
+  min-width: 35vw;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.arrow {
+  cursor: pointer;
+}
+
+.nav input {
+  border: none;
+  outline: none;
+  background-color: var(--color-bgApp);
+}

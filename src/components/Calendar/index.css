@@ -1,0 +1,43 @@
+.calendar {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 3px;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.calendarItem,
+.todayItem,
+.anyMonthItem,
+.selectedDay {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  width: 100px;
+  height: 60px;
+  background-color: var(--color-calendarItem);
+  color: var(--color-calendarItemText);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 10px;
+  overflow: auto;
+  transition: all 0.5s;
+}
+
+.selectedDay {
+  box-shadow: inset 0px 0px 1px 1.5px var(--color-elements);
+}
+
+.todayItem {
+  background-image: var(--color-today);
+}
+
+.anyMonthItem {
+  background-color: var(--color-anyMonth);
+  color: var(--color-textAnyMonth);
+}
+
+.calendarItem:hover {
+  transform: scale(1.02);
+}
